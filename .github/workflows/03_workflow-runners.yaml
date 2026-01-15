@@ -7,3 +7,9 @@ jobs:
             - name: show runner info
               run: |
                    echo "This job is running on a ${{ runner.os }} ad ${{github.event_name}} runner provided by GitHub."
+    windows-echo:
+        runs-on: windows-Latest
+        steps:
+            - name: show runner info
+              run: |
+                   echo "This job is running on a ${{ runner.os }} ad ${{github.event_name}} runner provided by GitHub."
