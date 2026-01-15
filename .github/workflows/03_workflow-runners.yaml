@@ -1,0 +1,10 @@
+name: 03-workflow-runners
+on:
+    workflow_dispatch:
+jobs:
+    ubuntu-echo:
+        runs-on: ubuntu-Latest
+        steps:
+            - name: show runner info
+              run: |
+                   echo "This job is running on a ${{ runner.os }} ad ${{github.event_name}} runner provided by GitHub."
