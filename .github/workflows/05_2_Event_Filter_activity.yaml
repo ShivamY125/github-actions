@@ -1,7 +1,8 @@
 name: 05 - 2 - Event Filters and Activity Types
 on:
     pull_request:
-        types: [closed]
+        types:
+            - closed
         branches:
             - main
 jobs:
@@ -11,4 +12,3 @@ jobs:
             - name: print my message
               run: echo "Running whenever a PR is closed."
 
-              
