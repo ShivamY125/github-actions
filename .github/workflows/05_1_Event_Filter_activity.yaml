@@ -1,0 +1,14 @@
+name: 05-event-filters
+on:
+    pull_request:
+        types: 
+            - opened
+            - synchronize
+        branches:
+            - main
+jobs:
+    echo:
+        runs-on: ubuntu-Latest
+        steps:
+            - name: show event info
+              run: echo "Running whenever a PR is opened or synchronized AND base branch is main check ${{github.event_name}}"

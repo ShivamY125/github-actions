@@ -19,7 +19,7 @@ jobs:
       - name: Run unit Tests
         run: npm run test
         
-    # we could have also dodne like run: | cd 04_using_actions/react-app
+    # we could have also done like run: | cd 04_using_actions/react-app
     # npm ci   
     # run command npm ci will run inside the working directory to get .json and lock-json. 
     # Checkout the repo code. 
