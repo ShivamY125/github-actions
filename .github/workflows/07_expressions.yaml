@@ -2,9 +2,9 @@ name: 07- Using Expressions
 run-name: "07 - Using Expressions | DEBUG - ${{ inputs.debug && 'ON' || 'OFF' }}"
 
 # env:
-#   MY_VAR_WITH_DEFAULT: ${{vars.MY_VAR || 'Default_Value'}}
+  # MY_VAR_WITH_DEFAULT: ${{vars.MY_VAR || 'Default_Value'}}
 on:
-  push:     # We cannot paqss inputs to the push Events.
+      # We cannot paqss inputs to the push Events.
   workflow_dispatch:
     inputs:
         debug:
