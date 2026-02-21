@@ -4,7 +4,7 @@ on:
                    inputs:
                        pass-unit-tests:
                             type: boolean
-                            default: false
+                            default: true
 jobs:
     lint-build:
         runs-on: ubuntu-latest
@@ -18,24 +18,28 @@ jobs:
               run: echo "Running Tests"
         
             - name: "faling tests"
-              run: exit 1
               if: ${{inputs.pass-unit-tests == false}}
+              run: exit 1
     deploy-nonprod:
         runs-on: ubuntu-latest
-        if: ${{needs.lint-build.result == 'success' && needs.unit-tests.result == 'success'}}
+        needs: 
+            - lint-build
+            - unit-tests
         steps:
             - name: "Deploying to nonprod"
               run: echo "Deploying to nonprod..."
               
     e2e-tests:
         runs-on: ubuntu-latest
-        if : ${{needs.deploy-nonprod.result == 'success'}}
+        needs: deploy-nonprod
         steps:
             - name: "RUnning E2E tests"
               run: echo "Running e2e tests"
     deploy-prod:
         runs-on: ubuntu-latest
-        if: ${{needs.e2e-tests.result == 'success' && needs.load-tests.result == 'success'}}
+        needs: 
+            - deploy-nonprod
+            - e2e-tests
         steps:
             - name: "Deploying to prod"
               run: echo "Deploying to prod..."
