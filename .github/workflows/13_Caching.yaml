@@ -1,0 +1,38 @@
+name: 13-Caching
+on:
+    workflow_dispatch:
+                    inputs:
+                        use-cache:
+                            description: "Weather to execute Cache step"
+                            type: boolean
+                            default: true
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+               working-directory: 13-caching/react-app
+       
+        # 1checout the code
+        # 2. Install dependencies.
+        # 3. Linting , formatting, unit testing, building etc.
+        # 4. Depoy to nonprod enviornment.
+        steps:
+            - name: Checkout code
+              uses: actions/ceheckout@v4
+            - name: Setup Node
+              uses: actions/setup-node@v3
+              with:
+                   node-version: '20.x'
+            - name: Install Dependencies
+              run: npm ci
+              
+            - name:  Tesining
+              run:  npm run test
+             
+            - name: building
+              run: npm run build
+     
+            - name: Deploying to nonprod
+              run: echo "Deploying to Non-Prod"
+
